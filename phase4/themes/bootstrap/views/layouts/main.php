@@ -43,7 +43,8 @@
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="brand" href="<?php echo $this->createAbsoluteUrl('//'); ?>"><?php echo CHtml::encode(Yii::app()->name); ?></a>
+				<a class="brand" href="<?php echo $this->createAbsoluteUrl('//'); ?>"><img style="max-width:80px;" src="http://synergyspace.bitnamiapp.com/images/xlogowhite4.png.pagespeed.ic.6Ggkv8i5Ui.png" pagespeed_url_hash="1183778358">
+				</a>
 				<?php $this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
 						array('label'=>'Home', 'url'=>array('/site/index')),
