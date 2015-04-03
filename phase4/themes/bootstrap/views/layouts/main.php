@@ -13,9 +13,6 @@
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/style.css" rel="stylesheet">
 	<style type="text/css">
-		body {
-			text-align: center;
-		}
         .peopleCarouselImg img {        
 
         }
@@ -27,10 +24,6 @@
         }
         .img-portfolio {
           margin-bottom: 30px;
-        }
-        .row {
-            margin-right:5px;
-            margin-left: 5px;
         }
         </style>
 
@@ -56,7 +49,6 @@
 						array('label'=>'Home', 'url'=>array('/site/index')),
 						array('label'=>'Graph', 'url'=>array('PostContent/graph')),
 						array('label'=>'RestFul API', 'url'=>array('/site/post')),
-						array('label'=>'Register', 'url'=>array('/user/create')),
 					),
 					'htmlOptions'=>array(
 						'class'=>'nav',
@@ -64,10 +56,11 @@
 				)); ?>
 				<?php $this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
-						array('label'=>'New Idea', 'url'=>array('/postContent/create', 'visible'=>!Yii::app()->user->isGuest)),
+						array('label'=>'New Idea', 'url'=>array('/postContent/create'), 'visible'=>!Yii::app()->user->isGuest),
 						array('label'=>'View Ideas', 'url'=>array('/postContent/'),'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Register', 'url'=>array('/user/create'), 'visible'=>Yii::app()->user->isGuest),
 						array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-						array('label'=>Yii::app()->user->name, 'url'=>array('site/profile'), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>Yii::app()->user->name, 'url'=>array('/user/view&id='.Yii::app()->user->id), 'visible'=>!Yii::app()->user->isGuest),
 						array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest, 'htmlOptions'=>array('class'=>'btn'))
 					),
 					'htmlOptions'=>array(

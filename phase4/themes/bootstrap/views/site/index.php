@@ -52,9 +52,9 @@ $this->pageTitle=Yii::app()->name;
 <hr style="border:0;background-color:#000000;height:1px;">
       <section id="video" class="video">
         <div class="video-container">
-            <h1 calign="center"> Your coworking space rental and teaming to succeed destination</h1>
+            <h1 align="center"> Your coworking space rental and teaming to succeed destination</h1>
             </br>
-            <iframe height="400" width="700" src="https://www.youtube.com/embed/39FkG1Lgt24?rel=0" frameborder="0" allowfullscreen></iframe>
+            <center><iframe height="400" width="700" src="https://www.youtube.com/embed/39FkG1Lgt24?rel=0" frameborder="0" allowfullscreen></iframe></center>
         </div>
         </br></br></br>
         <div class="row">
