@@ -28,7 +28,7 @@ class User extends CActiveRecord
 	 * Property for receiving the file from the form
 	 * It should be different from any other field in the database
 	 */
-	public $photo_filename;
+	public $image;
 	
 	/**
 	 * @return string the associated database table name
@@ -53,7 +53,7 @@ class User extends CActiveRecord
 			array('password, gender', 'length', 'max'=>32),
 			array('phone_number, num_ratings, num_groups, num_spaces_renting, num_spaces_owning', 'length', 'max'=>10),
 			array('bio', 'length', 'max'=>1000),
-			 array('photo_filename', 'file', 'types'=>'jpg, gif, png'),
+			array('image', 'file', 'types'=>'jpg, gif, png'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, tag, email_address, password, first_name, last_name, address, gender, phone_number, bio, rating_score, num_ratings, num_groups, num_spaces_renting, num_spaces_owning, photo_filename', 'safe', 'on'=>'search'),

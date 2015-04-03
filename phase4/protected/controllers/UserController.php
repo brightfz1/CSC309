@@ -69,8 +69,14 @@ class UserController extends Controller
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
-			if($model->save())
+			$model->image=CUploadedFile::getInstance($model,'image');
+			$filename = time().'profile.jpg';
+			$model->photo_filename = $filename;
+			if($model->save()) {	
+				$model->image->saveAs(Yii::app()->basePath.'/../img/'.$filename);
 				$this->redirect(array('view','id'=>$model->id));
+			}
+				
 		}
 
 		$this->render('create',array(
@@ -93,7 +99,15 @@ class UserController extends Controller
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
+			$model->image=CUploadedFile::getInstance($model,'image');
+			if ($model->photo_filename==""){
+				$filename = time().'profile.jpg';
+				$model->photo_filename = $filename;
+			} else {
+				$filename = $model->photo_filename;
+			}
 			if($model->save())
+				$model->image->saveAs(Yii::app()->basePath.'/../img/'.$filename);
 				$this->redirect(array('view','id'=>$model->id));
 		}
 

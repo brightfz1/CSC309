@@ -3,6 +3,7 @@
 <?php $form=$this->beginWidget('BActiveForm', array(
 	'id'=>'user-form',
 	'enableAjaxValidation'=>false,
+	'htmlOptions' => array('enctype' => 'multipart/form-data'),
 )); ?>
 
 	<?php $this->widget('BAlert',array(
@@ -79,7 +80,7 @@
 	<div class="<?php echo $form->fieldClass($model, 'photo_filename'); ?>">
 		<?php echo $form->labelEx($model,'photo_filename'); ?>
 		<div class="input">
-			<?php echo $form->textField($model,'photo_filename',array('size'=>50,'maxlength'=>50)); ?>
+			<?php echo $form->fileField($model, 'image'); ?>
 			<?php echo $form->error($model,'photo_filename'); ?>
 		</div>
 	</div>
