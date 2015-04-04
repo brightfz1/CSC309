@@ -37,6 +37,9 @@ return array(
                 'ext.bootstrap-theme.gii',
             ),
 		),
+			'Admin'=>array(
+				'class'=>'application.modules.Admin.AdminModule',
+		),
 		
 	),
 
