@@ -1,11 +1,12 @@
 <div class="view">
 
+	<img width="150px" src="<?php echo Yii::app()->request->baseUrl.'/img/'.$data->photo_filename
+//echo CHtml::encode($data->photo_filename); ?>" />
+	<br />
+	
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('tag')); ?>:</b>
-	<?php echo CHtml::encode($data->tag); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('email_address')); ?>:</b>
@@ -49,17 +50,26 @@
 	<?php echo CHtml::encode($data->num_groups); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('num_spaces_renting')); ?>:</b>
-	<?php echo CHtml::encode($data->num_spaces_renting); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('num_spaces_owning')); ?>:</b>
 	<?php echo CHtml::encode($data->num_spaces_owning); ?>
 	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('photo_filename')); ?>:</b>
-	<?php echo CHtml::encode($data->photo_filename); ?>
+		
+	<b><?php echo CHtml::encode($data->getAttributeLabel('num_spaces_renting')); ?>:</b>
+	<?php echo CHtml::encode($data->num_spaces_renting); ?>
 	<br />
-
+	
+	<b><?php echo CHtml::encode($data->getAttributeLabel('Space Interest')); ?>:</b>
+	<?php $space_request = $data->getSpaceRequest($data->id);
+// 		print_r($space_request);
+// 		exit;
+		foreach ($space_request as $req) {
+			echo "<tr>".$req['name']."; </tr>";
+		}
+	//echo $form->dropDownList($model,$data->id,User::model()->getSpaceRequest()); ?>
+	<br />
+	
+	<b><?php echo CHtml::encode($data->getAttributeLabel('tag')); ?>:</b>
+	<?php echo CHtml::encode($data->tag); ?>
+	<br />
 
 </div>

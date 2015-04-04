@@ -77,6 +77,46 @@
 		</div>
 	</div>
 
+	<div class="<?php echo $form->fieldClass($model, 'rating_score'); ?>">
+		<?php echo $form->labelEx($model,'rating_score'); ?>
+		<div class="input">
+			<?php echo $form->textField($model,'rating_score'); ?>
+			<?php echo $form->error($model,'rating_score'); ?>
+		</div>
+	</div>
+
+	<div class="<?php echo $form->fieldClass($model, 'num_ratings'); ?>">
+		<?php echo $form->labelEx($model,'num_ratings'); ?>
+		<div class="input">
+			<?php echo $form->textField($model,'num_ratings',array('size'=>10,'maxlength'=>10)); ?>
+			<?php echo $form->error($model,'num_ratings'); ?>
+		</div>
+	</div>
+
+	<div class="<?php echo $form->fieldClass($model, 'num_groups'); ?>">
+		<?php echo $form->labelEx($model,'num_groups'); ?>
+		<div class="input">
+			<?php echo $form->textField($model,'num_groups',array('size'=>10,'maxlength'=>10)); ?>
+			<?php echo $form->error($model,'num_groups'); ?>
+		</div>
+	</div>
+
+	<div class="<?php echo $form->fieldClass($model, 'num_spaces_renting'); ?>">
+		<?php echo $form->labelEx($model,'num_spaces_renting'); ?>
+		<div class="input">
+			<?php echo $form->textField($model,'num_spaces_renting',array('size'=>10,'maxlength'=>10)); ?>
+			<?php echo $form->error($model,'num_spaces_renting'); ?>
+		</div>
+	</div>
+
+	<div class="<?php echo $form->fieldClass($model, 'num_spaces_owning'); ?>">
+		<?php echo $form->labelEx($model,'num_spaces_owning'); ?>
+		<div class="input">
+			<?php echo $form->textField($model,'num_spaces_owning',array('size'=>10,'maxlength'=>10)); ?>
+			<?php echo $form->error($model,'num_spaces_owning'); ?>
+		</div>
+	</div>
+
 	<div class="<?php echo $form->fieldClass($model, 'photo_filename'); ?>">
 		<?php echo $form->labelEx($model,'photo_filename'); ?>
 		<div class="input">

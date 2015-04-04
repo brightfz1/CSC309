@@ -68,6 +68,7 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'spaceRequest'=>array(self::BELONGS_TO, 'SpaceRequest', 'UID'),
 		);
 	}
 
@@ -92,7 +93,7 @@ class User extends CActiveRecord
 			'num_groups' => 'Num Groups',
 			'num_spaces_renting' => 'Num Spaces Renting',
 			'num_spaces_owning' => 'Num Spaces Owning',
-			'photo_filename' => 'Photo Filename',
+			'photo_filename' => 'Your Photo',
 		);
 	}
 
@@ -154,6 +155,43 @@ class User extends CActiveRecord
 		} else {
 			return false;
 		}
+	}
+	
+	public function getSpaceRequest($uid) {
+		$spaceRequest = SpaceRequest::model()->findAll(array(
+  			'select' =>array('SID','acceptance'),
+			'condition' => 'UID='.$uid,
+		));
+		$result = array();
+		$i = 0;
+		foreach ($spaceRequest as $req) {
+			$sid = $req->attributes['SID'];
+			$acc = $req->attributes['acceptance'];
+			$result[$i]['SID'] = $sid;
+			$spaceName = Space::model()->find(array(
+				'select' =>array('name'),
+				'condition' => 'id='.$sid,
+			));
+			$status = "";
+			switch ($acc) {
+				case 2:
+					$status = "Pending";
+					break;
+				case 1:
+					$status = "Acceptance";
+					break;
+				case 0:
+					$status = "Refuse";
+					break;
+			}
+			$result[$i]['acceptance'] = $status;
+			$result[$i]['name'] = $spaceName->attributes['name'];
+			$i++;
+		}
+// 		echo "<pre>";
+// 		print_r($result);
+// 		exit;
+		return $result;
 	}
 	
 	/**

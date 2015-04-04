@@ -19,6 +19,11 @@ $this->menu=array(
 	'cssFile'=>false,
 	'attributes'=>array(
 		//'id',
+		array(
+			'label'=>'Head Protrait',
+			'type' => 'raw',
+			'value'=>CHtml::image(Yii::app()->request->baseUrl.'/img/'.$model->photo_filename,'alt',array("width"=>"150px" )),
+		),
 		'email_address',
 		//'password',
 		'first_name',
@@ -32,7 +37,7 @@ $this->menu=array(
 		'num_groups',
 		'num_spaces_renting',
 		'num_spaces_owning',
-		'photo_filename',
+		//'photo_filename',
 		'tag',
 	),
 )); ?>
