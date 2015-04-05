@@ -1,7 +1,7 @@
 <?php
-$this->pageCaption='Create Space';
+$this->pageCaption='List SynergySpace';
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
-$this->pageDescription='Define a new space';
+$this->pageDescription='List your space for rent';
 $this->breadcrumbs=array(
 	'Spaces'=>array('index'),
 	'Create',

@@ -17,7 +17,14 @@ class SpaceController extends Controller
 			'accessControl', // perform access control for CRUD operations
 		);
 	}
-
+	
+// 	public function view(){
+//     $data =  Space::model()->getData();
+//     $this->render('view',array(
+//     'data'=>$data,
+//     ));
+// 	}
+	
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -53,6 +60,8 @@ class SpaceController extends Controller
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
+		
+		
 	}
 
 	/**
@@ -173,4 +182,7 @@ class SpaceController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+
+
 }

@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Users', 'url'=>array('index')),
+	array('label'=>'List Synergists', 'url'=>array('index')),
 	array('label'=>'View My Profile', 'url'=>array('view', 'id'=>$model->id)),
 );
 ?>

@@ -1,5 +1,5 @@
 <?php
-$this->pageCaption='Manage Users';
+$this->pageCaption='Manage Synergists';
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
 $this->pageDescription='Administer all users';
 $this->breadcrumbs=array(

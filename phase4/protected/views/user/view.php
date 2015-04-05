@@ -1,5 +1,5 @@
 <?php
-$this->pageCaption='View User #'.$model->id;
+$this->pageCaption='View Synergist '.$model->first_name;
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
 $this->pageDescription='';
 $this->breadcrumbs=array(
@@ -39,10 +39,14 @@ $this->menu=array(
 		'num_spaces_owning',
 		//'photo_filename',
 		'tag',
-		array(
-			'label'=>'Space Interest',
-			'type' => 'raw',
-			'value'=>$model->ShowSpaceInterest($model->id),
-			),
 	),
-)); ?>
+)); 
+?>
+	<br>
+	<h3>Ideal Space</h3>
+	<?php $spaces = $model->getSpaceRequest($model->id);
+	foreach($spaces as $space){
+		echo CHtml::link($space['name'],array('space/view', 'id'=>$space['SID']));
+        echo "</br>";
+	}?>
+	<br />

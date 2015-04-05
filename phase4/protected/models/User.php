@@ -79,20 +79,20 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'tag' => 'Tag',
-			'email_address' => 'Email Address',
+			'tag' => 'Professional Skill',
+			'email_address' => 'Email',
 			'password' => 'Password',
 			'first_name' => 'First Name',
 			'last_name' => 'Last Name',
 			'address' => 'Address',
 			'gender' => 'Gender',
-			'phone_number' => 'Phone Number',
-			'bio' => 'Bio',
-			'rating_score' => 'Rating Score',
-			'num_ratings' => 'Num Ratings',
-			'num_groups' => 'Num Groups',
-			'num_spaces_renting' => 'Num Spaces Renting',
-			'num_spaces_owning' => 'Num Spaces Owning',
+			'phone_number' => 'Phone',
+			'bio' => 'Who Am I',
+			'rating_score' => 'My Rating Score',
+			'num_ratings' => 'Number of Ratings',
+			'num_groups' => 'Num of My Groups',
+			'num_spaces_renting' => 'Number of Spaces Renting',
+			'num_spaces_owning' => 'Number of Spaces Owning',
 			'photo_filename' => 'Your Photo',
 		);
 	}
@@ -184,6 +184,7 @@ class User extends CActiveRecord
 					$status = "Refuse";
 					break;
 			}
+			$result[$i]['SID'] = $sid;
 			$result[$i]['acceptance'] = $status;
 			$result[$i]['name'] = $spaceName->attributes['name'];
 			$i++;

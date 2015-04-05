@@ -8,13 +8,13 @@
  * @property string $name
  * @property string $address
  * @property string $description
- * @property double $rating_score
  * @property string $num_ratings
  * @property string $num_tenants
  * @property string $num_groups
  * @property string $OWNER_SID
  * @property string $tag
- * @property integer $space_type
+ * @property string $space_type
+ * @property double $rating_score
  */
 class Space extends CActiveRecord
 {
@@ -34,15 +34,12 @@ class Space extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, address, description, rating_score, num_ratings, num_tenants, num_groups, OWNER_SID, tag, space_type', 'required'),
-			array('space_type', 'numerical', 'integerOnly'=>true),
-			array('rating_score', 'numerical'),
-			array('name, address, tag', 'length', 'max'=>100),
+			array('name, address, description, tag, space_type', 'required'),
+			array('name, address, tag, space_type', 'length', 'max'=>100),
 			array('description', 'length', 'max'=>1000),
-			array('num_ratings, num_tenants, num_groups, OWNER_SID', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, address, description, rating_score, num_ratings, num_tenants, num_groups, OWNER_SID, tag, space_type', 'safe', 'on'=>'search'),
+			array('name, address, description, tag, space_type', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,13 +64,13 @@ class Space extends CActiveRecord
 			'name' => 'Name',
 			'address' => 'Address',
 			'description' => 'Description',
-			'rating_score' => 'Rating Score',
 			'num_ratings' => 'Num Ratings',
 			'num_tenants' => 'Num Tenants',
 			'num_groups' => 'Num Groups',
 			'OWNER_SID' => 'Owner Sid',
 			'tag' => 'Tag',
 			'space_type' => 'Space Type',
+			'rating_score' => 'Rating Score',
 		);
 	}
 
@@ -99,13 +96,13 @@ class Space extends CActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('address',$this->address,true);
 		$criteria->compare('description',$this->description,true);
-		$criteria->compare('rating_score',$this->rating_score);
 		$criteria->compare('num_ratings',$this->num_ratings,true);
 		$criteria->compare('num_tenants',$this->num_tenants,true);
 		$criteria->compare('num_groups',$this->num_groups,true);
 		$criteria->compare('OWNER_SID',$this->OWNER_SID,true);
 		$criteria->compare('tag',$this->tag,true);
-		$criteria->compare('space_type',$this->space_type);
+		$criteria->compare('space_type',$this->space_type,true);
+		$criteria->compare('rating_score',$this->rating_score);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -122,4 +119,84 @@ class Space extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	function getData() {
+	
+
+
+	$data = Yii::app()->db->createCommand()
+    ->select('*')
+    ->from('space')
+    ->queryAll();
+    return $data;
+    
+    
+    // $sql = "*";
+//     $data = Yii::app()->db
+//         ->createCommand($sql)
+//         ->queryAll();
+//     return $data;
 }
+
+
+    public function getGroup($id) {
+		$group = Group::model()->findAll(array(
+  			'select' =>array('id','name'),
+			'condition' => 'sid='.$id,
+		));
+		$result = array();
+		$i = 0;
+		foreach ($group as $req) {
+			$gid = $req->attributes['id'];
+			$gname = $req->attributes['name'];
+			$result[$i]['GID'] = $gid;
+			$result[$i]['gname'] = $gname;
+			$i++;
+		}
+		return $result;
+    }
+    
+    public function getPhoto($id) {
+		$photo = SpacePhoto::model()->findAll(array(
+  			'select' =>array('id','photo_data'),
+			'condition' => 'sid='.$id,
+		));
+		$result = array();
+		$i = 0;
+		foreach ($photo as $req) {
+			$pid = $req->attributes['id'];
+			$pdata = $req->attributes['photo_data'];
+			$result[$i]['PID'] = $pid;
+			$result[$i]['pdata'] = $pdata;
+			$i++;
+		}
+		return $result;
+    }
+ 
+ 	public function ShowGroup($id) {
+		$group = $this->getGroup($id);
+		return $group;
+// 		$result = " ";
+// 		foreach ($group as $req) {
+// 
+// 			$result = $result.$req['gname']."&&&";
+// 
+// 		}
+		
+// 		return $result;
+	}
+    
+    public function ShowPhoto($id) {
+		$photo = $this->getPhoto($id);
+		return $photo;
+// 		$result = " ";
+// 		foreach ($group as $req) {
+// 
+// 			$result = $result.$req['gname']."&&&";
+// 
+// 		}
+		
+// 		return $result;
+	}
+}
+

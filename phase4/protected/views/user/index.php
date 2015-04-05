@@ -1,7 +1,7 @@
 <?php
-$this->pageCaption='Users';
+$this->pageCaption='Synergist';
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
-$this->pageDescription='List of all users';
+$this->pageDescription='All Synergists';
 $this->breadcrumbs=array(
 	'Users',
 );

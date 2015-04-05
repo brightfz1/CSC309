@@ -1,5 +1,5 @@
 <?php
-$this->pageCaption='Update Space '.$model->id;
+$this->pageCaption='Update your SynergySpace: '.$model->name;
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
 $this->pageDescription='';
 $this->breadcrumbs=array(

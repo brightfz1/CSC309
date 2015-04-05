@@ -57,13 +57,18 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('num_spaces_renting')); ?>:</b>
 	<?php echo CHtml::encode($data->num_spaces_renting); ?>
 	<br />
-	
-	<b><?php echo CHtml::encode($data->getAttributeLabel('Space Interest')); ?>:</b>
-	<?php echo $data->ShowSpaceInterest($data->id); ?>
-	<br />
-	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('tag')); ?>:</b>
 	<?php echo CHtml::encode($data->tag); ?>
 	<br />
+	<br />
+	<h3>His/Her Ideal Space</h3>
+	<?php $spaces = $data->getSpaceRequest($data->id);
+	foreach($spaces as $space){
+		echo CHtml::link($space['name'],array('space/view', 'id'=>$space['SID']));
+        echo "</br>";
+	}?>
+	<br />
+	
+	
 
 </div>

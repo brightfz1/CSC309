@@ -1,7 +1,7 @@
 <?php
-$this->pageCaption='Manage Spaces';
+$this->pageCaption='Manage your spaces';
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
-$this->pageDescription='Administer all spaces';
+$this->pageDescription='Administer the spaces which you have ownership of';
 $this->breadcrumbs=array(
 	'Spaces'=>array('index'),
 	'Manage',
@@ -45,18 +45,18 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'cssFile'=>Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('ext.bootstrap-theme.widgets.assets')).'/gridview/styles.css',
 	'itemsCssClass'=>'zebra-striped',
 	'columns'=>array(
-		'id',
+		//'id',
 		'name',
 		'address',
 		'description',
-		'rating_score',
-		'num_ratings',
-		/*
-		'num_tenants',
-		'num_groups',
-		'OWNER_SID',
 		'tag',
 		'space_type',
+	//	'num_ratings',
+	//	'num_tenants',
+		/*
+		'num_groups',
+		'OWNER_SID',
+		'rating_score',
 		*/
 		array(
 			'class'=>'CButtonColumn',
