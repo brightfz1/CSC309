@@ -39,5 +39,10 @@ $this->menu=array(
 		'num_spaces_owning',
 		//'photo_filename',
 		'tag',
+		array(
+			'label'=>'Space Interest',
+			'type' => 'raw',
+			'value'=>$model->ShowSpaceInterest($model->id),
+			),
 	),
 )); ?>

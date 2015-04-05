@@ -188,9 +188,16 @@ class User extends CActiveRecord
 			$result[$i]['name'] = $spaceName->attributes['name'];
 			$i++;
 		}
-// 		echo "<pre>";
-// 		print_r($result);
-// 		exit;
+		return $result;
+	}
+	
+	public function ShowSpaceInterest($uid) {
+		$space_request = $this->getSpaceRequest(4);
+		$result = " ";
+		foreach ($space_request as $req) {
+			$result = $result.$req['name']."; ";
+		}
+		
 		return $result;
 	}
 	

@@ -47,7 +47,6 @@
 				</a>
 				<?php $this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
-						array('label'=>'Home', 'url'=>array('/site/index')),
 						array('label'=>'View', 'url'=>array('/Admin/analytics/view')),
 						array('label'=>'Space Type', 'url'=>array('/Admin/spaceType/update')),
 						array('label'=>'Group', 'url'=>array('/Admin/maxUsersGroup/update')),
@@ -58,8 +57,6 @@
 				)); ?>
 				<?php $this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
-						array('label'=>'New Idea', 'url'=>array('/postContent/create'), 'visible'=>!Yii::app()->user->isGuest),
-						array('label'=>'View Ideas', 'url'=>array('/postContent/'),'visible'=>!Yii::app()->user->isGuest),
 						array('label'=>'Register', 'url'=>array('/user/create'), 'visible'=>Yii::app()->user->isGuest),
 						array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 						array('label'=>Yii::app()->user->name, 'url'=>array('/user/view&id='.Yii::app()->user->id), 'visible'=>!Yii::app()->user->isGuest),

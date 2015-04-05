@@ -59,13 +59,7 @@
 	<br />
 	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('Space Interest')); ?>:</b>
-	<?php $space_request = $data->getSpaceRequest($data->id);
-// 		print_r($space_request);
-// 		exit;
-		foreach ($space_request as $req) {
-			echo "<tr>".$req['name']."; </tr>";
-		}
-	//echo $form->dropDownList($model,$data->id,User::model()->getSpaceRequest()); ?>
+	<?php echo $data->ShowSpaceInterest($data->id); ?>
 	<br />
 	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('tag')); ?>:</b>
