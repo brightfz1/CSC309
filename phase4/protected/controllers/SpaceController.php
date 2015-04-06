@@ -38,7 +38,7 @@ class SpaceController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','rating'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -63,7 +63,30 @@ class SpaceController extends Controller
 		
 		
 	}
-
+	public function actionRating($id,$value)
+	{
+		$model=$this->loadModel($id);
+	
+		if(isset($_POST['Space']))
+		{   
+			if($model->rating_score === NULL){
+				$model->rating_score = 0;
+			}
+			$model->attributes=$_POST['Space'];
+			$total = $model->num_ratings *  $model->rating_score;
+			$number = $model->num_ratings + 1;
+			$model->rating_score = ($total+$value)/$number;
+			$model->num_ratings = $number;
+			if($model->save()){
+				//$model->image->saveAs(Yii::app()->basePath.'/../img/'.$filename);
+				$this->redirect(array('view','id'=>$model->id));
+			}
+		}
+	
+		$this->render('view',array(
+				'model'=>$this->loadModel($id),
+		));
+	}
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.

@@ -31,7 +31,7 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update'),
+				'actions'=>array('update','rating','search'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -54,7 +54,30 @@ class UserController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
-
+    
+	
+	public function actionRating($id,$value)
+	{
+		$model=$this->loadModel($id);
+	
+		if(isset($_POST['User']))
+		{
+			$model->attributes=$_POST['User'];
+			$total = $model->num_ratings *  $model->rating_score;
+			$number = $model->num_ratings + 1;
+			$model->rating_score = ($total+$value)/$number;
+			$model->num_ratings = $number;
+			if($model->save()){
+				$this->redirect(array('view','id'=>$model->id));
+			}
+		}
+	
+		$this->render('view',array(
+				'model'=>$this->loadModel($id),
+		));
+	}
+	
+	
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -72,8 +95,11 @@ class UserController extends Controller
 			$model->image=CUploadedFile::getInstance($model,'image');
 			$filename = time().'profile.jpg';
 			$model->photo_filename = $filename;
-			if($model->save()) {	
-				$model->image->saveAs(Yii::app()->basePath.'/../img/'.$filename);
+			if($model->save()) {
+				if (!($model->image == NULL)){
+					$model->image->saveAs(Yii::app()->basePath.'/../img/'.$filename);
+				}	
+				
 				$this->redirect(array('view','id'=>$model->id));
 			}
 				
@@ -107,8 +133,10 @@ class UserController extends Controller
 				$filename = $model->photo_filename;
 			}
 			if($model->save())
-				$model->image->saveAs(Yii::app()->basePath.'/../img/'.$filename);
-				$this->redirect(array('view','id'=>$model->id));
+				if (!($model->image == NULL)){
+					$model->image->saveAs(Yii::app()->basePath.'/../img/'.$filename);
+					$this->redirect(array('view','id'=>$model->id));
+				}			
 		}
 
 		$this->render('update',array(
@@ -159,6 +187,18 @@ class UserController extends Controller
 
 		$this->render('admin',array(
 			'model'=>$model,
+		));
+	}
+	
+ 	public function actionSearch()
+	{
+		$model=new User('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['User']))
+			$model->attributes=$_GET['User'];
+	
+		$this->render('search',array(
+				'model'=>$model,
 		));
 	}
 

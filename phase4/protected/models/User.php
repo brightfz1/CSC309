@@ -53,7 +53,7 @@ class User extends CActiveRecord
 			array('password, gender', 'length', 'max'=>32),
 			array('phone_number, num_ratings, num_groups, num_spaces_renting, num_spaces_owning', 'length', 'max'=>10),
 			array('bio', 'length', 'max'=>1000),
-			array('image', 'file', 'types'=>'jpg, gif, png'),
+			//array('image', 'file', 'types'=>'jpg, gif, png'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, tag, email_address, password, first_name, last_name, address, gender, phone_number, bio, rating_score, num_ratings, num_groups, num_spaces_renting, num_spaces_owning, photo_filename', 'safe', 'on'=>'search'),
@@ -88,7 +88,7 @@ class User extends CActiveRecord
 			'gender' => 'Gender',
 			'phone_number' => 'Phone',
 			'bio' => 'Who Am I',
-			'rating_score' => 'My Rating Score',
+			'rating_score' => 'Rating Score',
 			'num_ratings' => 'Number of Ratings',
 			'num_groups' => 'Num of My Groups',
 			'num_spaces_renting' => 'Number of Spaces Renting',

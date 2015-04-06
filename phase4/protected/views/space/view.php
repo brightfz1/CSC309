@@ -16,49 +16,49 @@ $this->menu=array(
 );
 ?>
 
-<!-- 
-<?php 
-$this->widget('CStarRating',array('name'=>'rating')); 
-?>
- -->
+
+<div class="form">
+
+<?php $form=$this->beginWidget('BActiveForm', array(
+	'id'=>'user-form',
+	'enableAjaxValidation'=>false,
+	'htmlOptions' => array('enctype' => 'multipart/form-data'),
+)); ?>
+	
+
 <?php
+$value=$this->widget('CStarRating',array(
+	'model'=>$model,
+	'name'=>'rating',
+	'value'=> round($model->rating_score),
+	'minRating'=>1 ,
+	'maxRating'=>10 ,
+	'starCount'=>10 ,
+	'readOnly'=>true,
 
-
-//      $value=$this->widget('CStarRating',array(
-//                  'name'=>'rating',
-//              ));
-// 
-//         $connection = Yii::app()->db;
-// 		$command = $connection->createCommand("insert into rating_space (sid, rating) values ($model->id, $value)");
-// 		$caterow = $command->execute();
-
- $this->widget('CStarRating',array(
-    'name'=>'rating',
-    'callback'=>'
-        function(){
-        $.ajax({
-            type: "POST",
-            url: "'.Yii::app()->createUrl('book/rating').'",
-            data: "id='.$model->id.'&rate=" + $(this).val(),
-            success: function(msg){
-                alert( "Data Saved: " + msg 
-            )
-        }})}'
-        
-        
 ));
+?>
+	<br>
+	<br>
+	<h3>Please Rate Here</h3>
+    <?php echo $form->HiddenField($model,'address',array('size'=>60,'maxlength'=>254)); ?>
+	<div class="actions">
+		<?php echo CHtml::submitButton('1', array('submit' =>array('rating','id'=>$model->id,'value'=>1))); ?>&nbsp
+		<?php echo CHtml::submitButton('2', array('submit' =>array('rating', 'id'=>$model->id,'value'=>2))); ?>&nbsp
+		<?php echo CHtml::submitButton('3', array('submit' =>array('rating', 'id'=>$model->id,'value'=>3))); ?>&nbsp
+		<?php echo CHtml::submitButton('4', array('submit' =>array('rating', 'id'=>$model->id,'value'=>4))); ?>&nbsp
+		<?php echo CHtml::submitButton('5', array('submit' =>array('rating', 'id'=>$model->id,'value'=>5))); ?>&nbsp
+		<?php echo CHtml::submitButton('6', array('submit' =>array('rating', 'id'=>$model->id,'value'=>6))); ?>&nbsp
+		<?php echo CHtml::submitButton('7', array('submit' =>array('rating', 'id'=>$model->id,'value'=>7))); ?>&nbsp
+		<?php echo CHtml::submitButton('8', array('submit' =>array('rating', 'id'=>$model->id,'value'=>8))); ?>&nbsp
+		<?php echo CHtml::submitButton('9', array('submit' =>array('rating', 'id'=>$model->id,'value'=>9))); ?>&nbsp
+		<?php echo CHtml::submitButton('10', array('submit' =>array('rating', 'id'=>$model->id,'value'=>10))); ?>&nbsp
+	</div>
 
+<?php $this->endWidget(); ?>
 
+</div><!-- form -->
 
-//echo ;		
-// $this->widget('CLinkPager', array(
-//     'pages' => $pages,
-// )) ?>
-
-
-
-
-</br>
 </br>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
@@ -76,7 +76,6 @@ $this->widget('CStarRating',array('name'=>'rating'));
 		//'OWNER_SID',
 		'tag',
 		'space_type',
-		'rating_score',
 	),
 )); ?>
 </br>

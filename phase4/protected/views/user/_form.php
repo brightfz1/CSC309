@@ -12,6 +12,14 @@
 	)); ?>
 
 	<?php echo $form->errorSummary($model); ?>
+	
+	<div class="<?php echo $form->fieldClass($model, 'photo_filename'); ?>">
+		<?php echo $form->labelEx($model,'photo_filename'); ?>
+		<div class="input">
+			<?php echo $form->fileField($model, 'image'); ?>
+			<?php echo $form->error($model,'photo_filename'); ?>
+		</div>
+	</div>
 
 	<div class="<?php echo $form->fieldClass($model, 'email_address'); ?>">
 		<?php echo $form->labelEx($model,'email_address'); ?>
@@ -68,27 +76,21 @@
 			<?php echo $form->error($model,'phone_number'); ?>
 		</div>
 	</div>
+	
+	
 
 	<div class="<?php echo $form->fieldClass($model, 'bio'); ?>">
 		<?php echo $form->labelEx($model,'bio'); ?>
 		<div class="input">
-			<?php echo $form->textField($model,'bio',array('size'=>60,'maxlength'=>1000)); ?>
+			<?php echo $form->textarea($model,'bio',array('cols'=>20,'rows'=>7)); ?>
 			<?php echo $form->error($model,'bio'); ?>
-		</div>
-	</div>
-
-	<div class="<?php echo $form->fieldClass($model, 'photo_filename'); ?>">
-		<?php echo $form->labelEx($model,'photo_filename'); ?>
-		<div class="input">
-			<?php echo $form->fileField($model, 'image'); ?>
-			<?php echo $form->error($model,'photo_filename'); ?>
 		</div>
 	</div>
 	
 	<div class="<?php echo $form->fieldClass($model, 'tag'); ?>">
 		<?php echo $form->labelEx($model,'tag'); ?>
 		<div class="input">
-			<?php echo $form->textField($model,'tag',array('size'=>60,'maxlength'=>100)); ?>
+			<?php echo $form->textarea($model,'tag',array('cols'=>20,'rows'=>7)); ?>
 			<?php echo $form->error($model,'tag'); ?>
 		</div>
 	</div>

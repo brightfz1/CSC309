@@ -48,9 +48,11 @@
 				<?php $this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
 						array('label'=>'Home', 'url'=>array('/site/index')),
-						array('label'=>'Space', 'url'=>array('Space/index')),
-						array('label'=>'Explore Synergist', 'url'=>array('/user/index')),
-						array('label'=>'My Friend', 'url'=>array('/Space'), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Explore Synergist', 'url'=>array('/user/search')),
+						array('label'=>'Find Space', 'url'=>array('Space/index')),
+						array('label'=>'Post Space', 'url'=>array('/Space/create'),'visible'=>!Yii::app()->user->isGuest),
+						
+						
 					),
 					'htmlOptions'=>array(
 						'class'=>'nav',
@@ -58,8 +60,9 @@
 				)); ?>
 				<?php $this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
+						array('label'=>'My Friend', 'url'=>array('/Spacetennantship/index'), 'visible'=>!Yii::app()->user->isGuest),
 						array('label'=>'My Space', 'url'=>array('/Space/create'), 'visible'=>!Yii::app()->user->isGuest),
-						array('label'=>'Post Space', 'url'=>array('/Space/create'),'visible'=>!Yii::app()->user->isGuest),
+
 						array('label'=>'Register', 'url'=>array('/user/create'), 'visible'=>Yii::app()->user->isGuest),
 						array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 						array('label'=>Yii::app()->user->name, 'url'=>array('/user/view&id='.Yii::app()->user->id), 'visible'=>!Yii::app()->user->isGuest),
